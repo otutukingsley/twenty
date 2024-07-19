@@ -44,7 +44,11 @@ export const Steps = () => {
       <StyledHeader>
         <StepBar activeStep={activeStep}>
           {steps.map((key) => (
-            <StepBar.Step label={stepTitles[key]} key={key} />
+            <StepBar.Step
+              activeStep={activeStep}
+              label={stepTitles[key]}
+              key={key}
+            />
           ))}
         </StepBar>
       </StyledHeader>

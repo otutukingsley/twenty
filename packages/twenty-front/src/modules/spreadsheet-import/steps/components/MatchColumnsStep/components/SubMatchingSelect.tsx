@@ -1,3 +1,4 @@
+import { useTheme } from '@emotion/react';
 import styled from '@emotion/styled';
 
 import { MatchColumnSelect } from '@/spreadsheet-import/components/MatchColumnSelect';
@@ -5,6 +6,7 @@ import { useSpreadsheetImportInternal } from '@/spreadsheet-import/hooks/useSpre
 import { SelectOption } from '@/spreadsheet-import/types';
 import { getFieldOptions } from '@/spreadsheet-import/utils/getFieldOptions';
 
+import { IconChevronDown } from 'twenty-ui';
 import {
   MatchedOptions,
   MatchedSelectColumn,
@@ -12,16 +14,43 @@ import {
 } from '../MatchColumnsStep';
 
 const StyledContainer = styled.div`
+  align-items: center;
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(4)};
+  justify-content: space-between;
   padding-bottom: ${({ theme }) => theme.spacing(1)};
-  padding-left: ${({ theme }) => theme.spacing(2)};
 `;
 
-const StyledSelectLabel = styled.span`
+const StyledControlContainer = styled.div`
+  align-items: center;
+  background-color: ${({ theme }) => theme.background.transparent.lighter};
+  border: 1px solid ${({ theme }) => theme.border.color.medium};
+  box-sizing: border-box;
+  border-radius: ${({ theme }) => theme.border.radius.sm};
   color: ${({ theme }) => theme.font.color.primary};
-  font-size: ${({ theme }) => theme.font.size.sm};
-  font-weight: ${({ theme }) => theme.font.weight.medium};
-  padding-bottom: ${({ theme }) => theme.spacing(2)};
-  padding-top: ${({ theme }) => theme.spacing(1)};
+  cursor: 'pointer';
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(1)};
+  height: ${({ theme }) => theme.spacing(8)};
+  justify-content: space-between;
+  padding: 0 ${({ theme }) => theme.spacing(2)};
+  width: 100%;
+`;
+
+const StyledLabel = styled.span`
+  color: ${({ theme }) => theme.font.color.primary};
+  font-weight: ${({ theme }) => theme.font.weight.regular};
+  font-size: ${({ theme }) => theme.font.size.md};
+`;
+
+const StyledControlLabel = styled.div`
+  align-items: center;
+  display: flex;
+  gap: ${({ theme }) => theme.spacing(1)};
+`;
+
+const StyledIconChevronDown = styled(IconChevronDown)`
+  color: ${({ theme }) => theme.font.color.tertiary};
 `;
 
 interface SubMatchingSelectProps<T> {
@@ -38,10 +67,16 @@ export const SubMatchingSelect = <T extends string>({
   const { fields } = useSpreadsheetImportInternal<T>();
   const options = getFieldOptions(fields, column.value) as SelectOption[];
   const value = options.find((opt) => opt.value === option.value);
+  const theme = useTheme();
 
   return (
     <StyledContainer>
-      <StyledSelectLabel>{option.entry}</StyledSelectLabel>
+      <StyledControlContainer>
+        <StyledControlLabel>
+          <StyledLabel>{option.entry}</StyledLabel>
+        </StyledControlLabel>
+        <StyledIconChevronDown size={theme.icon.size.md} />
+      </StyledControlContainer>
       <MatchColumnSelect
         value={value}
         placeholder="Select..."
@@ -50,6 +85,7 @@ export const SubMatchingSelect = <T extends string>({
         }
         options={options}
         name={option.entry}
+        isSubmatchSelect
       />
     </StyledContainer>
   );

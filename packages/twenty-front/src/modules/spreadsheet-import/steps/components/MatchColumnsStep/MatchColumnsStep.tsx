@@ -16,6 +16,7 @@ import { SnackBarVariant } from '@/ui/feedback/snack-bar-manager/components/Snac
 import { useSnackBar } from '@/ui/feedback/snack-bar-manager/hooks/useSnackBar';
 import { Modal } from '@/ui/layout/modal/components/Modal';
 
+import { UnmatchColumn } from '@/spreadsheet-import/steps/components/MatchColumnsStep/components/UnmatchColumn';
 import { ColumnGrid } from './components/ColumnGrid';
 import { TemplateColumn } from './components/TemplateColumn';
 import { UserTableColumn } from './components/UserTableColumn';
@@ -49,7 +50,6 @@ export type MatchColumnsStepProps<T extends string> = {
   data: RawData[];
   headerValues: RawData;
   onContinue: (data: any[], rawData: RawData[], columns: Columns<T>) => void;
-  onBack: () => void;
 };
 
 export enum ColumnType {
@@ -113,7 +113,6 @@ export const MatchColumnsStep = <T extends string>({
   data,
   headerValues,
   onContinue,
-  onBack,
 }: MatchColumnsStepProps<T>) => {
   const { enqueueDialog } = useDialogManager();
   const { enqueueSnackBar } = useSnackBar();
@@ -281,16 +280,21 @@ export const MatchColumnsStep = <T extends string>({
               columns={columns}
               columnIndex={columnIndex}
               onChange={onChange}
+            />
+          )}
+          renderUnmatchedColumn={(columns, columnIndex) => (
+            <UnmatchColumn
+              columns={columns}
+              columnIndex={columnIndex}
               onSubChange={onSubChange}
             />
           )}
         />
       </StyledContent>
       <StepNavigationButton
-        onBack={onBack}
         onClick={handleOnContinue}
         isLoading={isLoading}
-        title="Continue"
+        title="Next Step"
       />
     </>
   );

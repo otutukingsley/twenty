@@ -1,4 +1,4 @@
-import { IconComponent } from 'twenty-ui';
+import { IconComponent, ThemeColor } from 'twenty-ui';
 import { ReadonlyDeep } from 'type-fest';
 
 import { Columns } from '@/spreadsheet-import/steps/components/MatchColumnsStep/MatchColumnsStep';
@@ -104,6 +104,8 @@ export type SelectOption = {
   value: string;
   // Disabled option when already select
   disabled?: boolean;
+  // Option color
+  color?: ThemeColor;
 };
 
 export type Input = {

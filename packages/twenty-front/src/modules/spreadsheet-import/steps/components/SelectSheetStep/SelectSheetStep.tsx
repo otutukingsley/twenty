@@ -64,7 +64,7 @@ export const SelectSheetStep = ({
         onClick={() => handleOnContinue(value)}
         onBack={onBack}
         isLoading={isLoading}
-        title="Continue"
+        title="Next Step"
       />
     </>
   );

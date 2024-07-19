@@ -67,7 +67,6 @@ export const Default = () => (
           headerValues={mockData[0] as string[]}
           data={mockData.slice(1)}
           onContinue={() => null}
-          onBack={() => null}
         />
       </ModalWrapper>
     </Providers>

@@ -10,6 +10,7 @@ const StyledModal = styled(Modal)`
   height: 61%;
   min-height: 600px;
   min-width: 800px;
+  padding: 0;
   position: relative;
   width: 63%;
   @media (max-width: ${MOBILE_VIEWPORT}px) {

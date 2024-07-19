@@ -225,7 +225,6 @@ export const UploadFlow = ({ nextStep, prevStep }: UploadFlowProps) => {
               errorToast((e as Error).message);
             }
           }}
-          onBack={onBack}
         />
       );
     case StepType.validateData:

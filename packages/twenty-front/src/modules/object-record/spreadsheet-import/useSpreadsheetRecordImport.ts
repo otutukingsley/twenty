@@ -83,6 +83,7 @@ export const useSpreadsheetRecordImport = (objectNameSingular: string) => {
             field.options?.map((option) => ({
               label: option.label,
               value: option.value,
+              color: option.color,
             })) || [],
         },
         validations: getSpreadSheetValidation(
