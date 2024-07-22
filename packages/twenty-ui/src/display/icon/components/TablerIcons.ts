@@ -151,6 +151,7 @@ export {
   IconTags,
   IconTarget,
   IconTargetArrow,
+  IconTestPipe,
   IconTextSize,
   IconTimelineEvent,
   IconTrash,

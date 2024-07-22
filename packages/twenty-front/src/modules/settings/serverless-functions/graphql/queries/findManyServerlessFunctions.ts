@@ -8,6 +8,7 @@ export const FIND_MANY_SERVERLESS_FUNCTIONS = gql`
           id
           name
           sourceCodeHash
+          sourceCodeFullPath
           runtime
           syncStatus
           createdAt
